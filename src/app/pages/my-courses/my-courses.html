@@ -1,0 +1,13 @@
+<div style="padding: 20px; max-width: 900px; margin: 0 auto;">
+  <h2>My Enrolled Courses</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
+    @for (course of myCourses; track course._id) {
+      <div style="border: 1px solid #28a745; padding: 15px; border-radius: 8px; background: #eef9f1;">
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+      </div>
+    } @empty {
+      <p>You haven't enrolled in any courses yet.</p>
+    }
+  </div>
+</div>

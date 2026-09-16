@@ -1,0 +1,19 @@
+<nav style="background: #333; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+  <a routerLink="/" style="color: white; font-weight: bold; text-decoration: none;">NTI Courses App</a>
+  <div style="display: flex; gap: 15px;">
+    <a routerLink="/courses" style="color: white; text-decoration: none;">All Courses</a>
+
+    @if (authService.currentUser()) {
+      @if (authService.currentUser()?.role === 'student') {
+        <a routerLink="/my-courses" style="color: white; text-decoration: none;">My Courses</a>
+      }
+      @if (authService.currentUser()?.role === 'admin') {
+        <a routerLink="/admin-dashboard" style="color: white; text-decoration: none;">Admin Dashboard</a>
+      }
+      <button (click)="logout()" style="background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">Logout</button>
+    } @else {
+      <a routerLink="/login" style="color: white; text-decoration: none;">Login</a>
+      <a routerLink="/register" style="color: white; text-decoration: none;">Register</a>
+    }
+  </div>
+</nav>

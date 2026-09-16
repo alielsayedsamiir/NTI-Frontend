@@ -1,0 +1,41 @@
+<div style="padding: 20px; max-width: 900px; margin: 0 auto;">
+  <h2>Admin Dashboard - Manage Courses</h2>
+  
+  <div style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+    <h3>Add New Course</h3>
+    <form (ngSubmit)="addCourse()">
+      <div style="margin-bottom: 10px;">
+        <input type="text" [(ngModel)]="newCourse.title" name="title" placeholder="Course Title" required style="width: 100%; padding: 8px;">
+      </div>
+      <div style="margin-bottom: 10px;">
+        <textarea [(ngModel)]="newCourse.description" name="description" placeholder="Course Description" required style="width: 100%; padding: 8px;"></textarea>
+      </div>
+      <div style="margin-bottom: 10px;">
+        <input type="text" [(ngModel)]="newCourse.instructor" name="instructor" placeholder="Instructor Name" style="width: 100%; padding: 8px;">
+      </div>
+      <button type="submit" style="background: #28a745; color: white; border: none; padding: 10px 20px; cursor: pointer;">Add Course</button>
+    </form>
+  </div>
+
+  <h3>Existing Courses</h3>
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr style="background: #f4f4f4; text-align: left;">
+        <th style="padding: 10px; border: 1px solid #ddd;">Title</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Instructor</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (course of courses; track course._id) {
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;">{{ course.title }}</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">{{ course.instructor }}</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">
+            <button (click)="deleteCourse(course._id)" style="background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
